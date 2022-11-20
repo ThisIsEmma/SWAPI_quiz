@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 2 - SWAPI</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to SWAPI requests!</h1>
+    </header>
+    <main>
+        <section>
+        <form action="/" method="GET">
+            <p>Which Star Wars character would you like to display?</p>
+            <label for="id">Please enter an ID:</label>
+            <input type="text" name="id">
+            <input type="submit" value="get results">
+        </form>
+        </section>
+        {% if id %}
+            {% if character['detail'] == 'Not found'%}
+            <h3>There is no entry at ID {{id}}, please try another id.</h3>
+            {% else %}
+            <section>
+                <h1>The result of your query:</h1>
+                <h3>Character with ID {{id}}</h3>
+                <p><b>Name: </b>{{character['name']}}</p>
+                <p><b>Height: </b>{{character['height']}}cm</p>
+                <p><b>Mass: </b>{{character['mass']}}kg</p>
+                <p><b>Hair Color: </b>{{character['hair_color']}}</p>
+                <p><b>Homeworld: </b>{{homeworld['name']}}</p>
+                <p><b>Films: </b></p>
+                <ul>
+                {% for film in films %}
+                    <li>{{film}}</li>
+                {% endfor %}
+                </ul>
+            </section>
+            {% endif %}
+        {% endif %}
+    </main>
+</body>
+</html>
